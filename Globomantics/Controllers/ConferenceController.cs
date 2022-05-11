@@ -25,5 +25,15 @@ namespace Globomantics.Controllers
             ViewBag.Title = "Add Conference";
             return View(new ConferenceModel());
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ConferenceModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await conferenceService.Add(model);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
